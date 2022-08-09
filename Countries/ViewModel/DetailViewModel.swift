@@ -10,26 +10,22 @@ import SwiftUI
 
 class DetailViewModel: ObservableObject {
     // Service
-    private var dataService: JSONDataService!
+    private var dataService: JSONDataService = JSONDataService()
     
     // Data
-    let code: String
+    let country: Country
     @Published var countryDetail: CountryDetail? = nil
     private var cancellables = Set<AnyCancellable>()
     
-    init(code: String){
-        self.code = code
+    init(country: Country){
+        self.country = country
+        addSubscribers()
+        dataService.getCountryDetail(countryCode: country.code)
     }
 }
 
 // Setup Functions
 extension DetailViewModel {
-    func setup(dataService: JSONDataService){
-        self.dataService = dataService
-        addSubscribers()
-        dataService.getCountryDetail(countryCode: code)
-    }
-    
     func addSubscribers() {
         dataService.$countryDetail
             .sink { [weak self] (returnedDetail) in

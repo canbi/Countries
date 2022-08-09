@@ -9,7 +9,6 @@ import AlertToast
 import SwiftUI
 
 struct HomeView: View {
-    @EnvironmentObject var dataService: JSONDataService
     @StateObject var vm: HomeViewModel
     @Binding var shouldScrollToTop: Bool
     
@@ -23,18 +22,13 @@ struct HomeView: View {
             ScrollView {
                 LazyVStack(spacing: 6, pinnedViews: .sectionHeaders) {
                     MainSection
-                        .sheet(item: $vm.selectedCountry) {
-                            vm.selectedCountry = nil
-                        } content: { country in
-                            DetailView(country: country)
-                        }
-
                 }
-            }.toast(isPresenting: $vm.loading) {
-                AlertToast(type: .loading, title: "Loading", subTitle: "API limit")
             }
-            .onAppear {
-                vm.setup(dataService: dataService)
+            .navigationDestination(for: $vm.selectedCountry) { country in
+                DetailView(country: country)
+            }
+            .toast(isPresenting: $vm.loading) {
+                AlertToast(type: .loading, title: "Loading", subTitle: "API limit")
             }
         }
     }
@@ -80,7 +74,7 @@ extension HomeView {
             .padding(.vertical, 12)
             .overlay(
                 RoundedRectangle(cornerRadius: 12)
-                    .stroke(Color.secondary, lineWidth: 2)
+                    .fill(.blue.opacity(0.2))
             )
         }
         .tint(.primary)
@@ -91,7 +85,7 @@ extension HomeView {
 // Section Header and Footer
 extension HomeView {
     private var SectionHeader: some View {
-        HStack {
+        HStack(alignment: .lastTextBaseline) {
             Text("Countries")
                 .font(.largeTitle)
                 .fontWeight(.bold)
@@ -101,6 +95,7 @@ extension HomeView {
             }
             Spacer()
         }
+        .foregroundColor(.blue.opacity(0.6))
         .padding(.top, 44)
         .padding(.bottom, 8)
     }
@@ -117,7 +112,7 @@ extension HomeView {
                         }
                     }, action: {
                         vm.pageFunction(url: prevHref)
-                    }, color: Color.secondary)
+                    }, color: .blue.opacity(0.2))
                 }
                 
                 if let nextHref = countries.nextLink {
@@ -129,10 +124,9 @@ extension HomeView {
                         }
                     }, action: {
                         vm.pageFunction(url: nextHref)
-                    }, color: Color.secondary)
+                    }, color: .blue.opacity(0.2))
                 }
-            }
-            
+            } 
         }
         .padding(.vertical)
         .padding(.horizontal)

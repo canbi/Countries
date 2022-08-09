@@ -9,8 +9,6 @@ import SwiftUI
 
 @main
 struct CountriesApp: App {
-    @StateObject private var dataService = JSONDataService()
-    
     // Control
     @State private var tabSelection: NavBarItem = .home
     @State var shouldScrollToTop: Bool = false
@@ -30,7 +28,6 @@ struct CountriesApp: App {
                 }
             }
             .navigationViewStyle(StackNavigationViewStyle())
-            .environmentObject(dataService)
         }
     }
 }

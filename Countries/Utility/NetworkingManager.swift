@@ -22,7 +22,7 @@ class NetworkingManager {
         }
     }
     
-    static func download(url: URL, loadingStatus: Binding<Bool>) -> AnyPublisher<Data, Error> {
+    static func download(url: URL, loadingStatus: Binding<Bool> = .constant(false)) -> AnyPublisher<Data, Error> {
         return URLSession.shared.dataTaskPublisher(for: url)
             .tryMap({ try handleURLResponse(output: $0, url: url, loadingStatus: loadingStatus) })
             .retryWithDelay()

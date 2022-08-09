@@ -21,13 +21,12 @@ class ImageDataService {
     init(photo: String, id: String) {
         self.photo = photo
         self.imageName = id
-        getImage()
     }
 }
 
 // MARK: - Functions
 extension ImageDataService {
-    private func getImage() {
+    func getImage() {
         if let savedImage = fileManager.getImage(name: imageName) {
             svgData = savedImage
         } else {

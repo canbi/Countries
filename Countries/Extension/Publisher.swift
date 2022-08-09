@@ -16,10 +16,10 @@ extension Publisher {
     return self.catch { error -> AnyPublisher<T, E> in
       return Publishers.Delay(
         upstream: self,
-        interval: 1.2,
-        tolerance: 0.1,
+        interval: 1,
+        tolerance: 0,
         scheduler: DispatchQueue.global())
-      .retry(3)
+      .retry(5)
       .eraseToAnyPublisher()
     }
   }

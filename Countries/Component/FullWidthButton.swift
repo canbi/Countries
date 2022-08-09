@@ -22,7 +22,7 @@ struct FullWidthButton<Content: View>: View {
             .padding(.vertical, 12)
             .overlay(
                 RoundedRectangle(cornerRadius: 12)
-                    .stroke(color, lineWidth: 2)
+                    .stroke(color, lineWidth: 3)
             )
         }
         .tint(.primary)

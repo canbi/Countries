@@ -31,9 +31,7 @@ extension JSONDataService {
         let endpoint = Endpoint.getCountries(limit: limit)
         guard let url = endpoint.url else { return }
         
-        countriesSubscription = NetworkingManager.download(url: url,
-                                                           loadingStatus: Binding(get: { self.loadingStatus },
-                                                                                  set: { self.loadingStatus = $0 }))
+        countriesSubscription = NetworkingManager.download(url: url)
             .decode(type: Countries.self, decoder: decoder)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: NetworkingManager.handleCompletion, receiveValue: { [weak self] (returnedCountries) in
@@ -48,9 +46,7 @@ extension JSONDataService {
         let endpoint = Endpoint.getCountry(countryCode: countryCode)
         guard let url = endpoint.url else { return }
         
-        countryDetailSubscription = NetworkingManager.download(url: url,
-                                                               loadingStatus: Binding(get: { self.loadingStatus },
-                                                                                      set: { self.loadingStatus = $0 }))
+        countryDetailSubscription = NetworkingManager.download(url: url)
             .decode(type: CountryDetail.self, decoder: decoder)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: NetworkingManager.handleCompletion, receiveValue: { [weak self] (returnedDetail) in

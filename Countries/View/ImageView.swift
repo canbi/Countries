@@ -19,11 +19,12 @@ struct ImageView: View {
         Group {
             if let image = vm.image {
                 SVGView(data: image)
-                
+                    .scaledToFit()
+                    
             } else {
                 ProgressView()
                     .frame(maxWidth: .infinity)
-                    .frame(height:200, alignment: .center)
+                    .frame(maxHeight: 275, alignment: .center)
             }
         }
     }

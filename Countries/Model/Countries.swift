@@ -39,9 +39,9 @@ struct Country: Codable, Identifiable {
     var id: String { wikiDataID }
     
     static var previewData: Country {
-        return .init(code: "US",
-                     currencyCodes: ["Dollar"],
-                     name: "USA",
+        return .init(code: "TR",
+                     currencyCodes: ["Turkish Lira"],
+                     name: "Türkiye",
                      wikiDataID: "Q30")
     }
 }

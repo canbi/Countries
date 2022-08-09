@@ -15,22 +15,24 @@ class ImageViewModel: ObservableObject {
     
     // Data
     @Published var image: Data? = nil
+    
     let imageDataService: ImageDataService
-    private var cancellables = Set<AnyCancellable>()
+    var imageSubscription: AnyCancellable?
     
     init(photo: String, id: String){
         self.imageDataService = ImageDataService(photo: photo, id: id)
-        addSubscribers()
+        self.addSubscribers()
+        self.imageDataService.getImage()
         self.isLoading = true
     }
     
     private func addSubscribers(){
-        imageDataService.$svgData
+        imageSubscription = imageDataService.$svgData
             .sink { [weak self] (_) in
                 self?.isLoading = false
             } receiveValue: { [weak self] (returnedImage) in
                 self?.image = returnedImage
+                self?.imageSubscription?.cancel()
             }
-            .store(in: &cancellables)
     }
 }
