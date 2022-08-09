@@ -7,16 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		365E54A428A2560E00FF4173 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 365E54A328A2560E00FF4173 /* README.md */; };
+		365E54B028A2578A00FF4173 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365E54AF28A2578A00FF4173 /* Endpoint.swift */; };
+		365E54B228A2592D00FF4173 /* JSONDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365E54B128A2592D00FF4173 /* JSONDataService.swift */; };
+		365E54B428A25A5D00FF4173 /* Countries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365E54B328A25A5D00FF4173 /* Countries.swift */; };
+		365E54B728A25AA100FF4173 /* CountryDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365E54B628A25AA100FF4173 /* CountryDetail.swift */; };
+		365E54B928A25AF700FF4173 /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365E54B828A25AF700FF4173 /* NetworkingManager.swift */; };
+		365E54BB28A25C8F00FF4173 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365E54BA28A25C8F00FF4173 /* HomeView.swift */; };
+		365E54BD28A25CE800FF4173 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365E54BC28A25CE800FF4173 /* HomeViewModel.swift */; };
 		36C65CFC28A255420035ADC9 /* CountriesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C65CFB28A255420035ADC9 /* CountriesApp.swift */; };
-		36C65CFE28A255420035ADC9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C65CFD28A255420035ADC9 /* ContentView.swift */; };
 		36C65D0028A255430035ADC9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36C65CFF28A255430035ADC9 /* Assets.xcassets */; };
 		36C65D0328A255430035ADC9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36C65D0228A255430035ADC9 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		365E54A328A2560E00FF4173 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		365E54AF28A2578A00FF4173 /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		365E54B128A2592D00FF4173 /* JSONDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONDataService.swift; sourceTree = "<group>"; };
+		365E54B328A25A5D00FF4173 /* Countries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Countries.swift; sourceTree = "<group>"; };
+		365E54B628A25AA100FF4173 /* CountryDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetail.swift; sourceTree = "<group>"; };
+		365E54B828A25AF700FF4173 /* NetworkingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
+		365E54BA28A25C8F00FF4173 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		365E54BC28A25CE800FF4173 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		36C65CF828A255420035ADC9 /* Countries.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Countries.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36C65CFB28A255420035ADC9 /* CountriesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesApp.swift; sourceTree = "<group>"; };
-		36C65CFD28A255420035ADC9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		36C65CFF28A255430035ADC9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		36C65D0228A255430035ADC9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -32,9 +46,66 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		365E54A528A256D600FF4173 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		365E54A628A256E400FF4173 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		365E54A728A256EB00FF4173 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				365E54BC28A25CE800FF4173 /* HomeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		365E54A828A256F000FF4173 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				365E54BA28A25C8F00FF4173 /* HomeView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		365E54A928A256F700FF4173 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				365E54B328A25A5D00FF4173 /* Countries.swift */,
+				365E54B628A25AA100FF4173 /* CountryDetail.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		365E54AA28A256FA00FF4173 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				365E54AF28A2578A00FF4173 /* Endpoint.swift */,
+				365E54B128A2592D00FF4173 /* JSONDataService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		365E54AB28A256FF00FF4173 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				365E54B828A25AF700FF4173 /* NetworkingManager.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
 		36C65CEF28A255420035ADC9 = {
 			isa = PBXGroup;
 			children = (
+				365E54A328A2560E00FF4173 /* README.md */,
 				36C65CFA28A255420035ADC9 /* Countries */,
 				36C65CF928A255420035ADC9 /* Products */,
 			);
@@ -51,8 +122,14 @@
 		36C65CFA28A255420035ADC9 /* Countries */ = {
 			isa = PBXGroup;
 			children = (
+				365E54A528A256D600FF4173 /* Extension */,
+				365E54AB28A256FF00FF4173 /* Utility */,
+				365E54AA28A256FA00FF4173 /* Service */,
+				365E54A928A256F700FF4173 /* Model */,
+				365E54A828A256F000FF4173 /* View */,
+				365E54A728A256EB00FF4173 /* ViewModel */,
+				365E54A628A256E400FF4173 /* Component */,
 				36C65CFB28A255420035ADC9 /* CountriesApp.swift */,
-				36C65CFD28A255420035ADC9 /* ContentView.swift */,
 				36C65CFF28A255430035ADC9 /* Assets.xcassets */,
 				36C65D0128A255430035ADC9 /* Preview Content */,
 			);
@@ -125,6 +202,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				365E54A428A2560E00FF4173 /* README.md in Resources */,
 				36C65D0328A255430035ADC9 /* Preview Assets.xcassets in Resources */,
 				36C65D0028A255430035ADC9 /* Assets.xcassets in Resources */,
 			);
@@ -137,8 +215,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				36C65CFE28A255420035ADC9 /* ContentView.swift in Sources */,
+				365E54B728A25AA100FF4173 /* CountryDetail.swift in Sources */,
+				365E54BB28A25C8F00FF4173 /* HomeView.swift in Sources */,
+				365E54B228A2592D00FF4173 /* JSONDataService.swift in Sources */,
+				365E54BD28A25CE800FF4173 /* HomeViewModel.swift in Sources */,
+				365E54B028A2578A00FF4173 /* Endpoint.swift in Sources */,
+				365E54B428A25A5D00FF4173 /* Countries.swift in Sources */,
 				36C65CFC28A255420035ADC9 /* CountriesApp.swift in Sources */,
+				365E54B928A25AF700FF4173 /* NetworkingManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +354,7 @@
 				DEVELOPMENT_TEAM = 32L9LV3KSY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Countries/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -299,6 +384,7 @@
 				DEVELOPMENT_TEAM = 32L9LV3KSY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Countries/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
