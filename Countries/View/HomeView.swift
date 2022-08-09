@@ -5,6 +5,7 @@
 //  Created by Can Bi on 9.08.2022.
 //
 
+import AlertToast
 import SwiftUI
 
 struct HomeView: View {
@@ -51,6 +52,8 @@ struct HomeView: View {
                         .padding(.horizontal)
                     }
                 }
+            }.toast(isPresenting: $vm.loading) {
+                AlertToast(type: .loading, title: "Loading", subTitle: "API limit")
             }
         }
     }
@@ -69,6 +72,9 @@ extension HomeView {
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .padding(.leading)
+            if let countries = vm.countries {
+                Text("\(countries.metadata.currentOffset + 1)-\(countries.currentMaxOffset)")
+            }
             Spacer()
         }
         .padding(.top, 44)

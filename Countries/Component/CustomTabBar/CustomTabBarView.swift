@@ -56,7 +56,7 @@ extension CustomTabBarView {
         .background(
             ZStack {
                 if localSelection == tab {
-                    RoundedRectangle(cornerRadius: 20)
+                    RoundedRectangle(cornerRadius: 12)
                         .fill(tab.tabColor).opacity(0.2)
                         .matchedGeometryEffect(id: "background_rectangle", in: namespace)
                 }
@@ -82,10 +82,10 @@ extension CustomTabBarView {
         }
         .padding(6)
         .background(
-            RoundedRectangle(cornerRadius: 26)
+            RoundedRectangle(cornerRadius: 16)
                 .fill(Color(UIColor.secondarySystemBackground))
         )
-        .cornerRadius(20)
+        .cornerRadius(12)
         .padding(.horizontal)
     }
 }

@@ -15,6 +15,14 @@ struct Countries: Codable {
     
     var prevLink: String? { links.first(where: { $0.rel == "prev"})?.href }
     var nextLink: String? { links.first(where: { $0.rel == "next"})?.href }
+    var currentMaxOffset: Int {
+        var tempMaxOffset = metadata.currentOffset + 10
+        if tempMaxOffset > metadata.totalCount {
+            tempMaxOffset = metadata.totalCount
+        }
+        
+        return tempMaxOffset
+    }
 }
 
 // MARK: - Country
