@@ -12,6 +12,9 @@ struct Countries: Codable {
     let data: [Country]
     let links: [Link]
     let metadata: Metadata
+    
+    var prevLink: String? { links.first(where: { $0.rel == "prev"})?.href }
+    var nextLink: String? { links.first(where: { $0.rel == "next"})?.href }
 }
 
 // MARK: - Country

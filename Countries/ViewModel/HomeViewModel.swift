@@ -33,3 +33,9 @@ extension HomeViewModel {
             .store(in: &cancellables)
     }
 }
+
+extension HomeViewModel {
+    func pageFunction(url: String){
+        dataService.getCountiesByPage(url: url)
+    }
+}

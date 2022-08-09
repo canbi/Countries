@@ -19,17 +19,7 @@ struct CountriesApp: App {
         WindowGroup {
             NavigationView {
                 ScrollView {
-                    TabView(selection: $tabSelection) {
-                        HomeView(dataService: dataService)
-                            .tag(NavBarItem.home)
-                        
-                        HomeView(dataService: dataService)
-                            .tag(NavBarItem.home)
-                    }
-                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                    .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .never))
-                    .frame(width: UIScreen.main.bounds.width,
-                           height: UIScreen.main.bounds.height)
+                    tabView
                 }
                 .ignoresSafeArea()
                 .navigationBarHidden(true)
@@ -41,5 +31,21 @@ struct CountriesApp: App {
             }
             .navigationViewStyle(StackNavigationViewStyle())
         }
+    }
+}
+
+extension CountriesApp {
+    private var tabView: some View {
+        TabView(selection: $tabSelection) {
+            HomeView(dataService: dataService, shouldScrollToTop: $shouldScrollToTop)
+                .tag(NavBarItem.home)
+            
+            HomeView(dataService: dataService, shouldScrollToTop: $shouldScrollToTop)
+                .tag(NavBarItem.saved)
+        }
+        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+        .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .never))
+        .frame(width: UIScreen.main.bounds.width,
+               height: UIScreen.main.bounds.height)
     }
 }
