@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct CountriesApp: App {
+    let dataService: JSONDataService = JSONDataService()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeView(dataService: dataService)
         }
     }
 }
