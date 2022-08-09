@@ -32,7 +32,9 @@ class NetworkingManager {
     static func handleURLResponse(output: URLSession.DataTaskPublisher.Output, url: URL, loadingStatus: Binding<Bool>) throws -> Data {
         guard let response = output.response as? HTTPURLResponse,
               response.statusCode >= 200 && response.statusCode < 300 else {
-            loadingStatus.wrappedValue = true
+            DispatchQueue.main.async {
+                loadingStatus.wrappedValue = true
+            }
             throw NetworkingError.badURLResponse(url: url)
         }
         

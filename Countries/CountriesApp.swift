@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct CountriesApp: App {
-    let dataService: JSONDataService = JSONDataService()
+    @StateObject private var dataService = JSONDataService()
     
     // Control
     @State private var tabSelection: NavBarItem = .home
@@ -30,6 +30,7 @@ struct CountriesApp: App {
                 }
             }
             .navigationViewStyle(StackNavigationViewStyle())
+            .environmentObject(dataService)
         }
     }
 }
@@ -37,10 +38,10 @@ struct CountriesApp: App {
 extension CountriesApp {
     private var tabView: some View {
         TabView(selection: $tabSelection) {
-            HomeView(dataService: dataService, shouldScrollToTop: $shouldScrollToTop)
+            HomeView(shouldScrollToTop: $shouldScrollToTop)
                 .tag(NavBarItem.home)
             
-            HomeView(dataService: dataService, shouldScrollToTop: $shouldScrollToTop)
+            HomeView(shouldScrollToTop: $shouldScrollToTop)
                 .tag(NavBarItem.saved)
         }
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))

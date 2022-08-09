@@ -8,6 +8,15 @@
         "revision" : "a4f4267f6454259ba4ed8f9dadb87334a789c26c",
         "version" : "1.3.7"
       }
+    },
+    {
+      "identity" : "svgview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/exyte/SVGView",
+      "state" : {
+        "revision" : "18bf73efc2f2dede5dfa73f517ddf4e054061294",
+        "version" : "1.0.4"
+      }
     }
   ],
   "version" : 2

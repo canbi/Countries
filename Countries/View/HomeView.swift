@@ -9,11 +9,12 @@ import AlertToast
 import SwiftUI
 
 struct HomeView: View {
+    @EnvironmentObject var dataService: JSONDataService
     @StateObject var vm: HomeViewModel
     @Binding var shouldScrollToTop: Bool
     
-    init(dataService: JSONDataService, shouldScrollToTop: Binding<Bool>) {
-        self._vm = StateObject(wrappedValue: HomeViewModel(dataService: dataService))
+    init(shouldScrollToTop: Binding<Bool>) {
+        self._vm = StateObject(wrappedValue: HomeViewModel())
         self._shouldScrollToTop = shouldScrollToTop
     }
     
@@ -21,39 +22,19 @@ struct HomeView: View {
         ScrollViewReader { reader in
             ScrollView {
                 LazyVStack(spacing: 6, pinnedViews: .sectionHeaders) {
-                    Section(header: SectionHeader, footer: SectionFooter) {
-                        LazyVGrid(columns: [GridItem(.flexible(maximum: .infinity))],
-                                  alignment: .leading,
-                                  spacing: 10) {
-                            if let countries = vm.countries?.data {
-                                ForEach(countries, id: \.code) { country in
-                                    Button(action: {
-                                        // Action
-                                    }) {
-                                        HStack {
-                                            Text(country.name)
-                                            Spacer()
-                                            Image(systemName: "heart")
-                                        }
-                                        .frame(maxWidth: .infinity, alignment: .leading)
-                                        .padding(.horizontal)
-                                        .padding(.vertical, 12)
-                                        .overlay(
-                                            RoundedRectangle(cornerRadius: 12)
-                                                .stroke(Color.secondary, lineWidth: 2)
-                                        )
-                                        
-                                    }
-                                    .tint(.primary)
-                                    .contentShape(Rectangle())
-                                }
-                            }
+                    MainSection
+                        .sheet(item: $vm.selectedCountry) {
+                            vm.selectedCountry = nil
+                        } content: { country in
+                            DetailView(country: country)
                         }
-                        .padding(.horizontal)
-                    }
+
                 }
             }.toast(isPresenting: $vm.loading) {
                 AlertToast(type: .loading, title: "Loading", subTitle: "API limit")
+            }
+            .onAppear {
+                vm.setup(dataService: dataService)
             }
         }
     }
@@ -61,10 +42,53 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(dataService: JSONDataService.previewInstance, shouldScrollToTop: .constant(false))
+        HomeView(shouldScrollToTop: .constant(false))
     }
 }
 
+// Section
+extension HomeView {
+    private var MainSection: some View {
+        Section(header: SectionHeader, footer: SectionFooter) {
+            LazyVGrid(columns: [GridItem(.flexible(maximum: .infinity))],
+                      alignment: .leading,
+                      spacing: 10) {
+                if let countries = vm.countries?.data {
+                    ForEach(countries, id: \.code) { country in
+                        CountryButton(country: country)
+                    }
+                }
+            }
+            .padding(.horizontal)
+        }
+    }
+}
+
+// Buttons
+extension HomeView {
+    private func CountryButton(country: Country) -> some View {
+        Button(action: {
+            vm.selectedCountry = country
+        }) {
+            HStack {
+                Text(country.name)
+                Spacer()
+                Image(systemName: "heart")
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.horizontal)
+            .padding(.vertical, 12)
+            .overlay(
+                RoundedRectangle(cornerRadius: 12)
+                    .stroke(Color.secondary, lineWidth: 2)
+            )
+        }
+        .tint(.primary)
+        .contentShape(Rectangle())
+    }
+}
+
+// Section Header and Footer
 extension HomeView {
     private var SectionHeader: some View {
         HStack {

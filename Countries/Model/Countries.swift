@@ -26,7 +26,7 @@ struct Countries: Codable {
 }
 
 // MARK: - Country
-struct Country: Codable {
+struct Country: Codable, Identifiable {
     let code: String
     let currencyCodes: [String]
     let name, wikiDataID: String
@@ -34,6 +34,15 @@ struct Country: Codable {
     enum CodingKeys: String, CodingKey {
         case code, currencyCodes, name
         case wikiDataID = "wikiDataId"
+    }
+    
+    var id: String { wikiDataID }
+    
+    static var previewData: Country {
+        return .init(code: "US",
+                     currencyCodes: ["Dollar"],
+                     name: "USA",
+                     wikiDataID: "Q30")
     }
 }
 

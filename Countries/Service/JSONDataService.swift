@@ -20,10 +20,9 @@ class JSONDataService: ObservableObject {
     
     //Control
     @Published var loadingStatus: Bool = false
+    
     init() {
     }
-    
-   
 }
 
 // MARK: - Functions

@@ -10,7 +10,7 @@ import SwiftUI
 
 class HomeViewModel: ObservableObject {
     // Service
-    private var dataService: JSONDataService
+    private var dataService: JSONDataService!
     
     // Data
     @Published var countries: Countries? = nil
@@ -18,16 +18,20 @@ class HomeViewModel: ObservableObject {
     
     // Control
     @Published var loading: Bool = false
+    @Published var selectedCountry: Country? = nil
     
-    init(dataService: JSONDataService){
-        self.dataService = dataService
-        addSubscribers()
-        self.dataService.getCountries()
+    init(){
     }
 }
 
 // Setup Functions
 extension HomeViewModel {
+    func setup(dataService: JSONDataService){
+        self.dataService = dataService
+        addSubscribers()
+        self.dataService.getCountries()
+    }
+    
     func addSubscribers() {
         dataService.$countries
             .sink { [weak self] (returnedCountries) in
