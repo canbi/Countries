@@ -12,6 +12,8 @@ struct DetailView: View {
     @EnvironmentObject var dataService: JSONDataService
     @StateObject var vm: DetailViewModel
     
+    let imageHeightLimit: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 600 : 275
+    
     init(country: Country, cdDataService: CoreDataDataService){
         self._vm = StateObject(wrappedValue: DetailViewModel(country: country, cdDataService: cdDataService))
     }
@@ -56,11 +58,11 @@ extension DetailView {
                 ImageView(photo: detail.data.flagImageURI, id: detail.data.wikiDataID)
             } else {
                 ProgressView()
-                    .frame(maxHeight: 275, alignment: .center)
+                    .frame(maxHeight: imageHeightLimit, alignment: .center)
             }
         }
         .frame(maxWidth: .infinity, alignment: .top)
-        .frame(maxHeight: 275, alignment: .top)
+        .frame(maxHeight: imageHeightLimit, alignment: .top)
     }
     
     private var InformationView: some View {

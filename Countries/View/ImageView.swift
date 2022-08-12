@@ -11,6 +11,8 @@ import SwiftUI
 struct ImageView: View {
     @StateObject var vm: ImageViewModel
     
+    let imageHeightLimit: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 600 : 275
+    
     init(photo: String, id: String) {
         self._vm = StateObject(wrappedValue: ImageViewModel(photo: photo, id: id))
     }
@@ -24,7 +26,7 @@ struct ImageView: View {
             } else {
                 ProgressView()
                     .frame(maxWidth: .infinity)
-                    .frame(maxHeight: 275, alignment: .center)
+                    .frame(maxHeight: imageHeightLimit, alignment: .center)
             }
         }
     }
