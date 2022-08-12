@@ -12,8 +12,8 @@ struct HomeView: View {
     @StateObject var vm: HomeViewModel
     @Binding var shouldScrollToTop: Bool
     
-    init(shouldScrollToTop: Binding<Bool>) {
-        self._vm = StateObject(wrappedValue: HomeViewModel())
+    init(cdDataService: CoreDataDataService, shouldScrollToTop: Binding<Bool>) {
+        self._vm = StateObject(wrappedValue: HomeViewModel(cdDataService: cdDataService))
         self._shouldScrollToTop = shouldScrollToTop
     }
     
@@ -25,18 +25,22 @@ struct HomeView: View {
                 }
             }
             .navigationDestination(for: $vm.selectedCountry) { country in
-                DetailView(country: country)
+                DetailView(country: country, cdDataService: vm.cdDataService)
             }
             .toast(isPresenting: $vm.loading) {
                 AlertToast(type: .loading, title: "Loading", subTitle: "API limit")
             }
+        }
+        .onAppear{
+            vm.countries = vm.findFavorites(returnedCountries: vm.countries)
         }
     }
 }
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(shouldScrollToTop: .constant(false))
+        HomeView(cdDataService: CoreDataDataService(moc: CoreDataController.moc),
+                 shouldScrollToTop: .constant(false))
     }
 }
 
@@ -61,24 +65,13 @@ extension HomeView {
 // Buttons
 extension HomeView {
     private func CountryButton(country: Country) -> some View {
-        Button(action: {
+        CountryRow(action: {
             vm.selectedCountry = country
-        }) {
-            HStack {
-                Text(country.name)
-                Spacer()
-                Image(systemName: "heart")
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.horizontal)
-            .padding(.vertical, 12)
-            .overlay(
-                RoundedRectangle(cornerRadius: 12)
-                    .fill(.blue.opacity(0.2))
-            )
-        }
-        .tint(.primary)
-        .contentShape(Rectangle())
+        }, favoriteAction: {
+            vm.makeFavorite(country: country)
+        }, color: .blue.opacity(0.2),
+                   countryName: country.name,
+                   isFavorited: country.isFavorited)
     }
 }
 

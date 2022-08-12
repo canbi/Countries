@@ -45,6 +45,7 @@ extension JSONDataService {
     func getCountryDetail(countryCode: String) {
         let endpoint = Endpoint.getCountry(countryCode: countryCode)
         guard let url = endpoint.url else { return }
+        print(url)
         
         countryDetailSubscription = NetworkingManager.download(url: url)
             .decode(type: CountryDetail.self, decoder: decoder)

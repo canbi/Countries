@@ -11,14 +11,20 @@ import SwiftUI
 class DetailViewModel: ObservableObject {
     // Service
     private var dataService: JSONDataService = JSONDataService()
+    private var cdDataService: CoreDataDataService
     
     // Data
     let country: Country
     @Published var countryDetail: CountryDetail? = nil
     private var cancellables = Set<AnyCancellable>()
     
-    init(country: Country){
+    // Control
+    @Published var isFavorited: Bool = false
+    
+    init(country: Country,cdDataService: CoreDataDataService){
         self.country = country
+        self.isFavorited = country.isFavorited
+        self.cdDataService = cdDataService
         addSubscribers()
         dataService.getCountryDetail(countryCode: country.code)
     }
@@ -32,5 +38,17 @@ extension DetailViewModel {
                 self?.countryDetail = returnedDetail
             }
             .store(in: &cancellables)
+    }
+    
+    func makeFavorite(country: Country){
+        if isFavorited {
+            if let country = cdDataService.getCountry(country.code) {
+                cdDataService.deleteCountry(country)
+            }
+        } else {
+            let _ = cdDataService.saveCountry(country: country)
+        }
+        
+        isFavorited.toggle()
     }
 }

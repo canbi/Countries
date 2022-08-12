@@ -9,6 +9,8 @@ import SwiftUI
 
 @main
 struct CountriesApp: App {
+    var cdDataService: CoreDataDataService = CoreDataDataService(moc: CoreDataController.moc)
+    
     // Control
     @State private var tabSelection: NavBarItem = .home
     @State var shouldScrollToTop: Bool = false
@@ -35,10 +37,12 @@ struct CountriesApp: App {
 extension CountriesApp {
     private var tabView: some View {
         TabView(selection: $tabSelection) {
-            HomeView(shouldScrollToTop: $shouldScrollToTop)
+            HomeView(cdDataService: cdDataService,
+                     shouldScrollToTop: $shouldScrollToTop)
                 .tag(NavBarItem.home)
             
-            HomeView(shouldScrollToTop: $shouldScrollToTop)
+            FavoritesView(cdDataService: cdDataService,
+                          shouldScrollToTop: $shouldScrollToTop)
                 .tag(NavBarItem.saved)
         }
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))

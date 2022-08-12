@@ -12,8 +12,8 @@ struct DetailView: View {
     @EnvironmentObject var dataService: JSONDataService
     @StateObject var vm: DetailViewModel
     
-    init(country: Country){
-        self._vm = StateObject(wrappedValue: DetailViewModel(country: country))
+    init(country: Country, cdDataService: CoreDataDataService){
+        self._vm = StateObject(wrappedValue: DetailViewModel(country: country, cdDataService: cdDataService))
     }
     
     var body: some View {
@@ -31,9 +31,9 @@ struct DetailView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
-                    //TODO
+                    vm.makeFavorite(country: vm.country)
                 } label: {
-                    Image(systemName: "heart")
+                    Image(systemName: vm.isFavorited ? "heart.fill" : "heart")
                 }
             }
         }
@@ -43,7 +43,8 @@ struct DetailView: View {
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            DetailView(country: Country.previewData)
+            DetailView(country: Country.previewData,
+                       cdDataService: CoreDataDataService(moc: CoreDataController.moc))
         }
     }
 }
@@ -72,11 +73,9 @@ extension DetailView {
             
             if let detail = vm.countryDetail {
                 Text("Dialing Code: ") .fontWeight(.bold) + Text(detail.data.callingCode)
-                Text("Capital: ") .fontWeight(.bold) + Text(detail.data.capital)
+                Text("Capital: ") .fontWeight(.bold) + Text(detail.data.capital ?? "N/A")
                 Text("Number of Regions: ") .fontWeight(.bold) + Text(String(detail.data.numRegions))
             }
-            
-            
         }
         .padding(.horizontal)
     }
@@ -94,5 +93,6 @@ extension DetailView {
             .background(RoundedRectangle(cornerRadius: 12).fill(.blue))
         })
         .tint(.white)
+        .padding(.leading)
     }
 }

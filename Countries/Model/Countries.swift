@@ -30,6 +30,7 @@ struct Country: Codable, Identifiable {
     let code: String
     let currencyCodes: [String]
     let name, wikiDataID: String
+    var isFavorited: Bool = false
     
     enum CodingKeys: String, CodingKey {
         case code, currencyCodes, name

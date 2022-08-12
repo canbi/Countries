@@ -14,7 +14,8 @@ struct CountryDetail: Codable {
 
 // MARK: - Detail
 struct Detail: Codable {
-    let capital, code, callingCode: String
+    let capital: String?
+    let code, callingCode: String
     let currencyCodes: [String]
     let flagImageURI: String
     let name: String
