@@ -69,7 +69,7 @@ extension HomeView {
             vm.selectedCountry = country
         }, favoriteAction: {
             vm.makeFavorite(country: country)
-        }, color: .blue.opacity(0.2),
+        }, color: .blue.opacity(0.3),
                    countryName: country.name,
                    isFavorited: country.isFavorited)
     }
@@ -105,7 +105,7 @@ extension HomeView {
                         }
                     }, action: {
                         vm.pageFunction(url: prevHref)
-                    }, color: .blue.opacity(0.2))
+                    }, color: .blue.opacity(0.3))
                 }
                 
                 if let nextHref = countries.nextLink {
@@ -117,7 +117,7 @@ extension HomeView {
                         }
                     }, action: {
                         vm.pageFunction(url: nextHref)
-                    }, color: .blue.opacity(0.2))
+                    }, color: .blue.opacity(0.3))
                 }
             } 
         }

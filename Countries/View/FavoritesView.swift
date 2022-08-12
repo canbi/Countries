@@ -81,7 +81,7 @@ extension FavoritesView {
             vm.goDetailPage(country: country)
         }, favoriteAction: {
             vm.deleteFavorite(country: country)
-        }, color: .red.opacity(0.2),
+        }, color: .red.opacity(0.3),
         countryName: country.wrappedName,
                    isFavorited: true)
     }

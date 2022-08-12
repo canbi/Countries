@@ -28,6 +28,7 @@ struct CountryRow: View {
             
             Button(action: favoriteAction){
                 Image(systemName: isFavorited ? "heart.fill" : "heart")
+                    .foregroundColor(isFavorited ? .red : .primary)
                     .padding(.vertical, 12)
                     .padding(.horizontal)
             }

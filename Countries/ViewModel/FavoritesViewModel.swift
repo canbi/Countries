@@ -33,7 +33,8 @@ extension FavoritesViewModel {
         let tempCountry = Country(code: country.wrappedCode,
                                   currencyCodes: country.wrappedCurrencyCodes,
                                   name: country.wrappedName,
-                                  wikiDataID: country.wrappedWikiDataID)
+                                  wikiDataID: country.wrappedWikiDataID,
+                                  isFavorited: true)
         
         self.selectedCountry = tempCountry
     }

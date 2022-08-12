@@ -36,6 +36,7 @@ struct DetailView: View {
                     vm.makeFavorite(country: vm.country)
                 } label: {
                     Image(systemName: vm.isFavorited ? "heart.fill" : "heart")
+                        .foregroundColor(vm.isFavorited ? .red : .primary)
                 }
             }
         }
