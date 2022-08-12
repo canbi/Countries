@@ -7,11 +7,9 @@ The app uses [GeoDB Cities RapidAPI](https://rapidapi.com/wirefreethought/api/ge
 ### Implemented Features
 - [x]  Data Structure
 - [x]  Networking with Combine and URLSession
-- [ ]  Downloading and caching images
-- [ ]  Custom NavigationLink for lazy loading
-- [ ]  Custom Tab Bar built upon TabView
-- [ ]  Settings page
-- [ ]  Theme color settings
+- [x]  Downloading and caching images
+- [x]  Custom NavigationLink for lazy loading
+- [x]  Custom Tab Bar built upon TabView
 - [ ]  Favorites
 - [ ]  Offline usage capability with CoreData and Directory File
 - [ ]  Offline UI State
