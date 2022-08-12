@@ -11,4 +11,9 @@ The app uses [GeoDB Cities RapidAPI](https://rapidapi.com/wirefreethought/api/ge
 - [x]  Custom NavigationLink for lazy loading
 - [x]  Custom Tab Bar built upon TabView
 - [x]  Favorites
-- [ ]  App icon and Launch Screen
+- [x]  App icon and Launch Screen
+
+### Dark UI Screenshots
+<img src="Screenshots/dark-1.png" width="200"/><img src="Screenshots/dark-2.png" width="200"/><img src="Screenshots/dark-3.png" width="200"/> <img src="Screenshots/dark-4.png" width="200"/><img src="Screenshots/dark-5.png" width="200"/><img src="Screenshots/dark-6.png" width="200"/>
+### Light UI Screenshots
+<img src="Screenshots/light-1.png" width="200"/><img src="Screenshots/light-2.png" width="200"/><img src="Screenshots/light-3.png" width="200"/><img src="Screenshots/light-4.png" width="200"/><img src="Screenshots/light-5.png" width="200"/><img src="Screenshots/light-6.png" width="200"/>
